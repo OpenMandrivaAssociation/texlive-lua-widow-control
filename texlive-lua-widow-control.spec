@@ -1,6 +1,6 @@
 Name:		texlive-lua-widow-control
-Version:	64191
-Release:	2
+Version:	65084
+Release:	1
 Summary:	Automatically remove widows and orphans from any document
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/lua-widow-control
