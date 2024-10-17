@@ -3,7 +3,7 @@ Version:	70601
 Release:	1
 Summary:	Automatically remove widows and orphans from any document
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/lua-widow-control
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/lua-widow-control
 License:	other-free cc-by-sa-4
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.doc.r%{version}.tar.xz
