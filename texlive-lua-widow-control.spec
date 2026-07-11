@@ -1,58 +1,35 @@
-Name:		texlive-lua-widow-control
-Version:	70601
-Release:	1
+%global tl_name lua-widow-control
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	3.0.1
+Release:	%{tl_revision}.1
 Summary:	Automatically remove widows and orphans from any document
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/lua-widow-control
+URL:		https://www.ctan.org/tex-archive/macros/luatex/generic/lua-widow-control
 License:	other-free cc-by-sa-4
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/lua-widow-control.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Unmodified TeX has very few ways of preventing widows and
-orphans. In documents with figures, section headings, and
-equations, TeX can stretch the vertical glue between items in
-order to prevent widows and orphans, but many documents have no
-figures or headings. TeX can also shorten the page by 1 line,
-but this will give each page a different length which can make
-a document look uneven. The typical solution is to
-strategically insert \looseness=1, but this requires manual
-editing every time that the document is edited.
-Lua-widow-control is essentially an automation of the
-\looseness method: it uses Lua callbacks to find "stretchy"
-paragraphs, then it lengthens them to remove widows and
-orphans. Lua-widow-control is compatible with all LuaTeX-based
-formats. All that is required is to load the package at the
-start of your document. To load: Plain LuaTeX: \input
-lua-widow-control LuaLaTeX: \usepackage{lua-widow-control}
-ConTeXt: \usemodule[lua-widow-control] OpTeX:
-\load[lua-widow-control]
+Unmodified TeX has very few ways of preventing widows and orphans. In
+documents with figures, section headings, and equations, TeX can stretch
+the vertical glue between items in order to prevent widows and orphans,
+but many documents have no figures or headings. TeX can also shorten the
+page by 1 line, but this will give each page a different length which
+can make a document look uneven. The typical solution is to
+strategically insert \looseness=1, but this requires manual editing
+every time that the document is edited. Lua-widow-control is essentially
+an automation of the \looseness method: it uses Lua callbacks to find
+"stretchy" paragraphs, then it lengthens them to remove widows and
+orphans. Lua-widow-control is compatible with all LuaTeX and LuaMetaTeX-
+based formats. All that is required is to load the package at the start
+of your document. To load: Plain LuaTeX: \input lua-widow-control
+LuaLaTeX: \usepackage{lua-widow-control} ConTeXt: \usemodule[lua-widow-
+control] OpTeX: \load[lua-widow-control]
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/luatex/lua-widow-control
-%{_texmfdistdir}/tex/optex/lua-widow-control
-%{_texmfdistdir}/tex/luatex/lua-widow-control
-%{_texmfdistdir}/tex/lualatex/lua-widow-control
-%{_texmfdistdir}/tex/context/third/lua-widow-control
-%doc %{_texmfdistdir}/doc/luatex/lua-widow-control
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
